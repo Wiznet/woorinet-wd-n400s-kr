@@ -34,5 +34,5 @@
 
 **[WIZnet Developer Forum](https://forum.wiznet.io/c/korean-forum/oshw/)** 에서 전세계의 WIZnet 기술 전문가들에게 질문하고 의견을 전달할 수 있습니다.<br>지금 방문하세요!
 
-[forum]: ./docs/imgs/forum.jpg
+[forum]: ./imgs/forum.jpg
 
