@@ -309,7 +309,7 @@ OK
 
 - TCP Server로 사용할 PC의 IP Address를 확인합니다.
 
-![](D:\___WORK\__OpenHouse\_git_woorinet-wd-n400s-kr\imgs\TCP_Example_01.png)
+![](./imgs/TCP_Example_01.PNG)
 
 
 
