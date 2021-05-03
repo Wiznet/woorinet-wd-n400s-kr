@@ -16,7 +16,7 @@
 | Ping 테스트        |     :heavy_check_mark:    | 네트워크 상의 지정된 목적지와 Ping 테스트 예제                   |
 | TCP/IP 구현하기 |       :heavy_check_mark:    | TCP client로 동작하여 데이터 송신 및 수신하는 예제               |
 | HTTP 구현하기 |  :heavy_check_mark:   | HTTP client로 동작하여 데이터 송신 및 수신하는 예제               |
-| MQTT 구현하기 |    :heavy_multiplication_x:    | MQTT client로 동작하여 데이터 송신 및 수신하는 예제               |
+| MQTT 구현하기 |    :heavy_check_mark:    | MQTT client로 동작하여 데이터 송신 및 수신하는 예제               |
 | GPS 활용하기       |     :heavy_multiplication_x:    | Cat.M1 모듈에 내장된 GPS 위치 측위 예제                          |
 | SMS 활용하기       |  :heavy_multiplication_x:  | Cat.M1 모듈에서 지원하는 SMS(단문 메시지 서비스)의 활용 예제     |
 | PSM 저전력 모드    |  :heavy_multiplication_x:  | Cat.M1 모듈에서 지원하는 저전력 모드(PSM) 활용 예제              |
