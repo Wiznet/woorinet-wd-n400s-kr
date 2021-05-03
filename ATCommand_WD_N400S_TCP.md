@@ -22,20 +22,20 @@
 
 * [**외장형 Cat.M1 모뎀(WD N400S)**](http://wiznetshop.co.kr/product/detail.html?product_no=786)
 
-<img src = "./imgs/wd-n400s.png" width="400px">
+<img src = "./imgs/wd-n400s.PNG" width="400px">
 
 * [**외장형Cat.M1(WD N400S) Interface B/D **](http://wiznetshop.co.kr/product/detail.html?product_no=787)
 
-  <img src = "./imgs/wd-n400s_if.png" width="300px">
+  <img src = "./imgs/wd-n400s_if.PNG" width="300px">
 
 
 * [**외장형 Cat.M1 확장 Cable **](http://wiznetshop.co.kr/product/detail.html?product_no=928)
 
-  <img src = "./imgs/wd-n400s_cable.png" width="300px">
+  <img src = "./imgs/wd-n400s_cable.PNG" width="300px">
   
 * [**Micro USB Cable **](http://wiznetshop.co.kr/product/detail.html?product_no=791)
 
-  <img src = "./imgs/micro_cable.jpg" width="200px">
+  <img src = "./imgs/micro_cable.JPG" width="200px">
 
 <a name="Step-1-Overview"></a>
 
@@ -263,9 +263,9 @@ MCU board로 Cat.M1 모듈을 제어하는 경우 해당 명령어를 사용합�
 
 - 모뎀을 PC와 Serial로 연결한 후 COM Port Number를 확인합니다.
 
-![](./imgs/wd-n400s_connect.jpg)
+![](./imgs/wd-n400s_connect.JPG)
 
-![1619684840712](./imgs/Example_01.png)
+![1619684840712](./imgs/Example_01.PNG)
 
 
 
@@ -301,7 +301,7 @@ AT*RNDISDATA=1
 
 OK
 ```
-![](./imgs/Example_02.png)
+![](./imgs/Example_02.PNG)
 
 
 
@@ -315,7 +315,7 @@ OK
 
 - PC에서 TCP Server로 사용하기위한 프로그램을 실행한 뒤 50001번으로 Port를 설정하고 Listen합니다.
 
-![](./imgs/TCP_Example_02.png)
+![](./imgs/TCP_Example_02.PNG)
 
 
 
@@ -336,13 +336,15 @@ OK
 +WSOCO:0,OPEN_CMPL
 ```
 
-![](./imgs/TCP_Example_03.png)
+![](./imgs/TCP_Example_03.PNG)
 
 
 
 - Server에서 Client의 연결을 확인할 수 있습니다. 
 
-![](./imgs/TCP_Example_04.png)
+
+
+![](./imgs/TCP_Example_04.PNG)
 
 
 
@@ -358,13 +360,15 @@ AT+WSOWR=0,12,Hello Cat.M1
 OK
 ```
 
-![](./imgs/TCP_Example_05.png)
+
+
+![](./imgs/TCP_Example_05.PNG)
 
 
 
 - Server에서 데이터가 수신 된 것을 확인할 수 있습니다. Sever에서도 Cat.M1 으로 데이터를 전송합니다. 
 
-![](./imgs/TCP_Example_06.png)
+![](./imgs/TCP_Example_06.PNG)
 
 
 
@@ -375,7 +379,9 @@ OK
 +WSORD:0,9,Hi Cat.M1
 ```
 
-![](./imgs/TCP_Example_07.png)
+
+
+![](./imgs/TCP_Example_07.PNG)
 
 
 
@@ -390,5 +396,7 @@ OK
 +WSOCL:0,CLOSE_CMPL
 ```
 
-![](./imgs/TCP_Example_08.png)
+
+
+![](./imgs/TCP_Example_08.PNG)
 
