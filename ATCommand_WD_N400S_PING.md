@@ -1,10 +1,10 @@
-# Cat.M1 외장형 모뎀 WD-N400S의 TCP/IP 데이터 통신 가이드
+# Cat.M1 외장형 모뎀 WD-N400S의 PING 테스트 가이드
 
 ## 목차
 
 -   [소개](#Step-1-Overview)
 -   [AT 명령어](#Step-2-ATCommand)
--   [TCP Client Test](#Step-3-Test)
+-   [PING 테스트](#Step-3-Test)
 
 <a name="Prerequisites"></a>
 
@@ -38,15 +38,15 @@
 <a name="Step-1-Overview"></a>
 
 ## 소개
-본 문서에서는 Cat.M1 단말인 우리넷 외장형 모뎀의 TCP 데이터 송수신 방법에 대한 가이드를 제공합니다.
+본 문서에서는 Cat.M1 단말인 우리넷 외장형 모뎀의 Ping 테스트 방법에 대한 가이드를 제공합니다.
 
-외장형 모뎀은 UART 인터페이스를 통해 활용하는 AT 명령어로 제어하는 것이 일반적입니다. Cat.M1 모듈 제조사에 따라 AT 명령어의 차이는 있지만, 일반적인 TCP client(UDP 포함)의 통신 과정은 다음과 같은 순서로 구현합니다.
+외장형 모뎀은 UART 인터페이스를 통해 활용하는 AT 명령어로 제어하는 것이 일반적입니다. Cat.M1 모듈 제조사에 따라 AT 명령어의 차이는 있지만,  일반적인 Ping 테스트를 위한 통신 과정은 다음과 같은 순서로 구현합니다. 
 
-1. 네트워크 인터페이스 활성화
-2. 소켓 열기 - 목적지 IP 주소 및 포트번호 포함
-3. 데이터 전송 - 송신 및 수신
-4. 소켓 닫기
-5. 네트워크 인터페이스 비활성화
+1. Echo 모드 설정
+2. USIM 상태 확인
+3. 네트워크 접속 확인
+4. 네트워크 인터페이스(PDP Context) 활성화
+5. Ping 테스트
 
 추가적으로, TCP 가이드 문서에는 다른 응용 가이드 문서에는 포함되어 있지 않은 Cat.M1 단말의 상태 확인 및 PDP context 관련 명령어에 대한 내용이 함께 포함되어 있습니다. 해당 명령어는 응용 구현 시 필수적으로 활용되어야 하므로, 함께 확인하시기 바랍니다.
 * Echo 모드 설정: `ATE`
@@ -134,127 +134,30 @@ MCU board로 Cat.M1 모듈을 제어하는 경우 해당 명령어를 사용합�
 | :-------- | :------ | :----------------------------------------------------------- |
 | (value2)  | integer | 0 : RNDIS Device 미사용(전화 접속 연결 사용)<br>1 : RNDIS Device 사용(전화 접속 연결 사용 불가) |
 
-### 5. 소켓 생성
-소켓 서비스를 생성하는 명령어 입니다.
 
-**AT Command:** AT+WSOCR
+### 5. Ping 테스트
 
-**Syntax:**
-
-| Type | Syntax | Response | Example
-|:--------|:--------|:--------|:--------|
-| Write | AT+WSOCR=(value1),(value2),(value3),(value4),(value5) | +WSOCR:(value6),(value7),(value8),(value9)<br><br>OK | AT+WSOCR=0,222.98.173.214,8080,1,0<br>+WSOCR:1,0,64:ff9b::222.98.173.214/8080,TCP<br><br>OK |
-
-**Defined values:**
-
-| Parameter | Type    | Description                                       |
-| :-------- | :------ | :------------------------------------------------ |
-| (value1)  | integer | Socket ID                                         |
-| (value2)  | string  | IP Address or URL                                 |
-| (value3)  | integer | Port                                              |
-| (value4)  | integer | Protocol<br>1 : TCP<br>2 : UDP                    |
-| (value5)  | integer | Packet Type<br>0 : ASCII<br>1 : HEX<br>2 : Binary |
-
-| Parameter | Type    | Description                    |
-| :-------- | :------ | :----------------------------- |
-| (value6)  | integer | Result<br>0 : 실패<br>1 : 성공 |
-| (value7)  | integer | Socket ID                      |
-| (value8)  | string  | IP Adress/Port                 |
-| (value9)  | integer | Protocol<br>1 : TCP<br>2 : UDP |
-
-### 6. 소켓 연결
-지정된 소켓 서비스를 연결하는 명령어 입니다.
-
-**AT Command:** AT+WSOCO
+**AT Command:** AT*PING
 
 **Syntax:**
 
 | Type | Syntax | Response | Example
 |:--------|:--------|:--------|:--------|
-| Write | AT+WSOCO=(value1)| +WSOCO:(value2),(value3),OPEN_WAIT<br><br>OK<br>+WSOCO:(value4),OPEN_CMPL | AT+WSOCO=0<br>+WSOCO:1,0,OPEN_WAIT<br><br>OK<br>+WSOCO:0,OPEN_CMPL |
+| Write | AT*PING=(value1),(value2) | OK | AT*PING=8.8.8.8,3"<br><br>OK<br>PING 64:ff9b::8.8.8.8(64:ff9b::808:808) 56 data bytes<br>64 bytes from 64:ff9b::808:808: icmp_seq=1 ttl=109 time=148 ms<br>64 bytes from 64:ff9b::808:808: icmp_seq=2 ttl=109 time=104 ms<br>64 bytes from 64:ff9b::808:808: icmp_seq=3 ttl=109 time=142 ms<br><br><br>--- 64:ff9b::8.8.8.8 ping statistics ---<br>3 packets transmitted, 3 received, 0% packet loss, time 2009ms<br>rtt min/avg/max/mdev = 104.895/131.917/148.183/19.239 ms<br>rtt min/avg/max/mdev = 104.895/131.917/148.183/19.239 ms |
+
 
 **Defined values:**
 
-| Parameter | Type    | Description |
-| :-------- | :------ | :---------- |
-| (value1)  | integer | Socket ID   |
+| Parameter | Type | Description |
+|:--------|:--------|:--------|
+| [value1] | String | Host address (URL, IPv4, IPv6) |
+| [value2] | Integer | Ping 송신 횟수 |
 
-| Parameter | Type    | Description                    |
-| :-------- | :------ | :----------------------------- |
-| (value2)  | integer | Result<br>0 : 실패<br>1 : 성공 |
-| (value3)  | integer | Socket ID                      |
-| (value4)  | integer | Socket ID                      |
 
-### 7. 소켓 데이터 전송
-
-지정된 소켓으로 데이터를 전송하는 명령어 입니다.
-
-**AT Command:** AT+WSOWR
-
-**Syntax:**
-
-| Type | Syntax | Response | Example
-|:--------|:--------|:--------|:--------|
-| Write | AT+WSOWR=(value1),(value2),(value3) | +WSOWR:(value4),(value5)<br><br>OK | AT+WSOWR=0,12,Hello Cat.M1<br>+WSOWR:1,0<br><br>OK |
-
-**Defined values:**
-
-| Parameter | Type    | Description |
-| :-------- | :------ | :---------- |
-| (value1)  | integer | Socket ID   |
-| (value2)  | integer | Data Length |
-| (value3)  | string  | Data        |
-
-| Parameter | Type    | Description                    |
-| :-------- | :------ | :----------------------------- |
-| (value4)  | integer | Result<br>0 : 실패<br>1 : 성공 |
-| (value5)  | integer | Socket ID                      |
-
-### 8. 소켓 데이터 수신
-지정된 소켓으로부터 데이터를 수신하는 명령어 입니다.
-
-**AT Command:** +WSORD
-
-**Syntax:**
-
-| Type | Syntax | Response | Example
-|:--------|:--------|:--------|:--------|
-| Read | | +WSORD=(value1),(value2),(value3) | +WSORD:0,9,Hi Cat.M1 |
-
-**Defined values:**
-
-| Parameter | Type    | Description |
-| :-------- | :------ | :---------- |
-| (value1)  | integer | Socket ID   |
-| (value2)  | integer | Data Length |
-| (value3)  | string  | Data        |
-
-### 9. 소켓 종료
-지정된 소켓 서비스를 종료하는 명령어 입니다.
-
-**AT Command:** AT+WSOCL
-
-**Syntax:**
-
-| Type | Syntax | Response | Example
-|:--------|:--------|:--------|:--------|
-| Write | AT+WSOCL=(value1) | +WSOCL:(value2),(value3),CLOSE_WAIT<br><br>OK<br>+WSOCL:(value4),CLOSE_CMPL | AT+WSOCL=0<br>+WSOCL:1,0,CLOSE_WAIT<br><br>OK<br>+WSOCL:0,CLOSE_CMPL |
-
-**Defined values:**
-
-| Parameter | Type    | Description |
-| :-------- | :------ | :---------- |
-| (value1)  | integer | Socket ID   |
-
-| Parameter | Type    | Description                    |
-| :-------- | :------ | :----------------------------- |
-| (value2)  | integer | Result<br>0 : 실패<br>1 : 성공 |
-| (value3)  | integer | Socket ID                      |
-| (value4)  | integer | Socket ID                      |
 
 <a name="Step-3-Test"></a>
 
-## TCP Client Test 
+## Ping Test 
 
 ### 1. 하드웨어 연결
 
@@ -302,98 +205,23 @@ OK
 
 
 
-### 3. TCP Socket 생성 및 서버 설정
+### 3. PING 테스트
 
-- TCP Server로 사용할 PC의 IP Address를 확인합니다.
-
-![](./imgs/TCP_Example_01.PNG)
-
-
-
-- PC에서 TCP Server로 사용하기위한 프로그램을 실행한 뒤 50001번으로 Port를 설정하고 Listen합니다.
-
-![](./imgs/TCP_Example_02.PNG)
-
-
-
-- TCP Server의 IP와 Port를 설정하여 TCP Socket을 생성하고 Server에 연결 합니다. 
-
+- PING TEST 를 진행할 IP와 횟수를 설정하고 결과를 확인합니다.
 ```
-// TCP socket 생성 (목적지 IP 주소 및 Port number)
-AT+WSOCR=0,222.98.173.232,50001,1,0
-+WSOCR:1,0,64:ff9b::222.98.173.232/50001,TCP
-
-OK
-
-// TCP socket 연결
-AT+WSOCO=0
-+WSOCO:1,0,OPEN_WAIT
-
-OK
-+WSOCO:0,OPEN_CMPL
+//Ping Test
+AT*PING=8.8.8.8,3<br>
+<br>
+OK<br>
+PING 64:ff9b::8.8.8.8(64:ff9b::808:808) 56 data bytes<br>
+64 bytes from 64:ff9b::808:808: icmp_seq=1 ttl=109 time=148 ms<br>
+64 bytes from 64:ff9b::808:808: icmp_seq=2 ttl=109 time=104 ms<br>
+64 bytes from 64:ff9b::808:808: icmp_seq=3 ttl=109 time=142 ms<br>
+<br>
+--- 64:ff9b::8.8.8.8 ping statistics ---<br>
+3 packets transmitted, 3 received, 0% packet loss, time 2009ms<br>
+rtt min/avg/max/mdev = 104.895/131.917/148.183/19.239 ms<br>
+rtt min/avg/max/mdev = 104.895/131.917/148.183/19.239 ms<br>
 ```
-
-![](./imgs/TCP_Example_03.PNG)
-
-
-
-- Server에서 Client의 연결을 확인할 수 있습니다. 
-
-
-
-![](./imgs/TCP_Example_04.PNG)
-
-
-
-### 4. 데이터 송수신
-
-- Cat.M1에서 TCP Server로 데이터를 전송합니다.
-
-```
-// TCP data 송신
-AT+WSOWR=0,12,Hello Cat.M1
-+WSOWR:1,0
-
-OK
-```
-
-
-
-![](./imgs/TCP_Example_05.PNG)
-
-
-
-- Server에서 데이터가 수신 된 것을 확인할 수 있습니다. Sever에서도 Cat.M1 으로 데이터를 전송합니다. 
-
-![](./imgs/TCP_Example_06.PNG)
-
-
-
-- Cat.M1에서 TCP Server가 전송한 데이터를 확인 할 수 있습니다.
-
-```
-// TCP data 수신
-+WSORD:0,9,Hi Cat.M1
-```
-
-
-
-![](./imgs/TCP_Example_07.PNG)
-
-
-
-- 데이터 송수신을 완료하였으면, TCP Socket 을 Close합니다.
-
-```
-// TCP socket 종료
-AT+WSOCL=0
-+WSOCL:1,0,CLOSE_WAIT
-
-OK
-+WSOCL:0,CLOSE_CMPL
-```
-
-
-
-![](./imgs/TCP_Example_08.PNG)
+![](./imgs/PING_Example_01.PNG)
 
