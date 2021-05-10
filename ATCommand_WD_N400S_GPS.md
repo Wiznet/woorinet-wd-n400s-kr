@@ -16,22 +16,24 @@
 
 * [**외장형 Cat.M1 모뎀(WD N400S)**](http://wiznetshop.co.kr/product/detail.html?product_no=786)
 
-<img src = "./imgs/wd-n400s.PNG" width="400px">
+<img src = "./imgs/wd-n400s.png" width="400px">
 
 * [**외장형Cat.M1(WD N400S) Interface B/D **](http://wiznetshop.co.kr/product/detail.html?product_no=787)
 
-  <img src = "./imgs/wd-n400s_if.PNG" width="300px">
+  <img src = "./imgs/wd-n400s_if.png" width="300px">
 
 
 * [**외장형 Cat.M1 확장 Cable **](http://wiznetshop.co.kr/product/detail.html?product_no=928)
 
-  <img src = "./imgs/wd-n400s_cable.PNG" width="300px">
+  <img src = "./imgs/wd-n400s_cable.png" width="300px">
   
 * [**Micro USB Cable **](http://wiznetshop.co.kr/product/detail.html?product_no=791)
 
-  <img src = "./imgs/micro_cable.JPG" width="200px">
+  <img src = "./imgs/micro_cable.jpg" width="200px">
 
 * [**외장형 Cat.M1 GPS Antenna **](http://wiznetshop.co.kr/product/detail.html?product_no=930&cate_no=45&display_group=1)
+
+<img src = "./imgs/gps_antenna.png" width="300px">
 
 
 
