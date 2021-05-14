@@ -20,7 +20,7 @@
 
 * [**외장형 Cat.M1 모뎀(WD N400S)**](http://wiznetshop.co.kr/product/detail.html?product_no=786)
 
-<img src = "./imgs/wd-n400s.PNG" width="400px">
+<img src = "./imgs/wd-n400s.png" width="400px">
 
 * [**외장형Cat.M1(WD N400S) Interface B/D **](http://wiznetshop.co.kr/product/detail.html?product_no=787)
 
