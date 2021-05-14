@@ -24,16 +24,16 @@
 
 * [**외장형Cat.M1(WD N400S) Interface B/D **](http://wiznetshop.co.kr/product/detail.html?product_no=787)
 
-  <img src = "./imgs/wd-n400s_if.PNG" width="300px">
+  <img src = "./imgs/wd-n400s_if.png" width="300px">
 
 
 * [**외장형 Cat.M1 확장 Cable **](http://wiznetshop.co.kr/product/detail.html?product_no=928)
 
-  <img src = "./imgs/wd-n400s_cable.PNG" width="300px">
+  <img src = "./imgs/wd-n400s_cable.png" width="300px">
   
 * [**Micro USB Cable **](http://wiznetshop.co.kr/product/detail.html?product_no=791)
 
-  <img src = "./imgs/micro_cable.JPG" width="200px">
+  <img src = "./imgs/micro_cable.jpg" width="200px">
 
 <a name="Step-1-Overview"></a>
 
@@ -163,9 +163,9 @@ MCU board로 Cat.M1 모듈을 제어하는 경우 해당 명령어를 사용합�
 
 - 모뎀을 PC와 Serial로 연결한 후 COM Port Number를 확인합니다.
 
-![](./imgs/wd-n400s_connect.JPG)
+![](./imgs/wd-n400s_connect.jpg)
 
-![1619684840712](./imgs/Example_01.PNG)
+![1619684840712](./imgs/Example_01.png)
 
 
 
@@ -201,7 +201,7 @@ AT*RNDISDATA=1
 
 OK
 ```
-![](./imgs/Example_02.PNG)
+![](./imgs/Example_02.png)
 
 
 
@@ -223,5 +223,5 @@ PING 64:ff9b::8.8.8.8(64:ff9b::808:808) 56 data bytes<br>
 rtt min/avg/max/mdev = 104.895/131.917/148.183/19.239 ms<br>
 rtt min/avg/max/mdev = 104.895/131.917/148.183/19.239 ms<br>
 ```
-![](./imgs/PING_Example_01.PNG)
+![](./imgs/PING_Example_01.png)
 

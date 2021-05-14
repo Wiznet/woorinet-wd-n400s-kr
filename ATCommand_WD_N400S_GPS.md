@@ -119,9 +119,9 @@ GPS 기능을 활성화 합니다.
 
 - 모뎀을 PC와 Serial로 연결한 후 COM Port Number를 확인합니다.
 
-![](./imgs/wd-n400s_connect.JPG)
+![](./imgs/wd-n400s_connect.jpg)
 
-![1619684840712](./imgs/Example_01.PNG)
+![1619684840712](./imgs/Example_01.png)
 
 
 
